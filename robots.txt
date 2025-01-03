@@ -1,0 +1,43 @@
+# Block all robots from all subdomains and subdirectories
+User-agent: *
+Disallow: /
+
+# Explicitly block access to all common subdirectories
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/
+Disallow: /admin/
+Disallow: /includes/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+Disallow: /backend/
+Disallow: /cms/
+Disallow: /assets/
+Disallow: /uploads/
+Disallow: /images/
+Disallow: /js/
+Disallow: /css/
+Disallow: /scripts/
+Disallow: /api/
+Disallow: /download/
+Disallow: /files/
+
+# Block common file types
+Disallow: /*.php$
+Disallow: /*.js$
+Disallow: /*.inc$
+Disallow: /*.css$
+Disallow: /*.gz$
+Disallow: /*.cgi$
+Disallow: /*.pdf$
+
+# Block all subdomains
+Host: myproject.nandosite.42web.io
+Disallow: /*
+
+# Crawl-delay directive (in seconds) to further restrict bot access
+Crawl-delay: 10
+
+# Sitemap location (comment out if you don't want to specify a sitemap)
+# Sitemap: https://example.com/sitemap.xml
