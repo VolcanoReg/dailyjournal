@@ -1,5 +1,12 @@
 <?php
-include "koneksi.php"; 
+include "koneksi.php";
+session_start();
+$user = '';
+if(isset($_SESSION['username'])){
+    $user = $_SESSION['username'];
+}else{
+    $user = 'Guest';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +17,9 @@ include "koneksi.php";
     <title>Latihan Bootstrap</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="icon" href="img/logo.png" />
+    <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
     <!--Navigation-->
@@ -32,10 +41,27 @@ include "koneksi.php";
                             <a class="nav-link" href="#profile">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="login.php">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">Logout</a>
+                            <div class="w3-container">
+                                <div class="w3-dropdown-hover">
+                                    <button class="w3-button w3-black w3-round-large" type="button">
+                                        <?=$user?>
+                                    </button>
+                                    <div class="w3-dropdown-content w3-bar-block w3-border">
+                                        <?php
+                                        if ($user == 'Guest'){
+                                        ?>
+                                            <a href="login.php" class="w3-bar-item w3-button">Login</a>
+                                        <?php
+                                        }else{
+                                        ?>
+                                            <a href="login.php" class="w3-bar-item w3-button">Change Account</a>
+                                            <a href="logout.php" class="w3-bar-item w3-button">Logout</a>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -48,7 +74,7 @@ include "koneksi.php";
                 <img src="" alt="" class="img-fluid" width="300">
                 <div>
                     <h1 class="fw-bold display-4">Daily Journal</h1>
-                    <h4 class="lead display-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore dolore eius officiis. Obcaecati optio corporis ducimus non doloremque voluptatum inventore vitae tenetur! Quod quis, vero laboriosam nobis porro rem iusto?</h4>
+                    <h4 class="lead display-6">Welcome to my Daily Journal website, Guest!</h4>
                 </div>
             </div>
         </div>
@@ -57,7 +83,7 @@ include "koneksi.php";
     <!-- article begin -->
     <section id="article" class="text-center p-5">
         <div class="container">
-            <h1 class="fw-bold display-4 pb-3">article</h1>
+            <h1 class="fw-bold display-4 pb-3">Article</h1>
             <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
                 <?php
                 $sql = "SELECT * FROM article ORDER BY tanggal DESC";
@@ -89,6 +115,38 @@ include "koneksi.php";
     </section>
     <!-- article end -->
     <!--Gallery Section-->
+    <section id="gallery" class="text-center p-5">
+        <div class="container">
+            <h1 class="fw-bold display-4 pb-3">Gallery</h1>
+            <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+                <?php
+                $sql = "SELECT * FROM article ORDER BY tanggal DESC";
+                $dir = "img";
+                $hasil = $conn->query($sql); 
+
+                while($row = $hasil->fetch_assoc()){
+                ?>
+                    <!--Repeated Echo-->
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="img/<?= $row["gambar"]?>" class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <img src="<?=$dir.$row['gambar']?>" alt="">
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-body-secondary">
+                                    <?= $row["tanggal"]?>
+                                    </small>
+                                </div>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?> 
+            </div>
+        </div>
+    </section>
+    <!--Gallery end-->
     <section id="profile" class="text-center p-5">
         <h1 class="fw-bold display-4 pb-5">Profile</h1>
         <div class="container row-cols-2 row-cols-md-1 g-4">
@@ -119,7 +177,7 @@ include "koneksi.php";
                                 <tr>
                                     <td>Telepon</td>
                                     <td>:</td>
-                                    <td>+62 815 7550 0051</td>
+                                    <td>-</td>
                                 </tr>
                                 <tr>
                                     <td>Alamat</td>
