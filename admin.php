@@ -51,7 +51,13 @@ if (!isset($_SESSION['username'])) {
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="admin.php?page=article">Article</a>
-            </li> 
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="admin.php?page=user">User</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="admin.php?page=gallery">Gallery</a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-danger fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <?= $_SESSION['username']?>
@@ -68,25 +74,25 @@ if (!isset($_SESSION['username'])) {
     <!-- content begin -->
     <section id="content" class="p-5">
         <div class="container"> 
-          <!-- content begin -->
-          <section id="content" class="p-5">
-              <div class="container">
-                  <?php
-                  if(isset($_GET['page'])){
-                  ?>
-                      <h4 class="lead display-6 pb-2 border-bottom border-danger-subtle"><?= ucfirst($_GET['page'])?></h4>
-                      <?php
-                      include($_GET['page'].".php");
-                  }else{
-                  ?>
-                      <h4 class="lead display-6 pb-2 border-bottom border-danger-subtle">Dashboard</h4>
-                      <?php
-                      include("dashboard.php");
-                  }
-                  ?>
-              </div>
-          </section>
-          <!-- content end -->
+            <!-- content begin -->
+            <section id="content" class="p-5">
+                <div class="container">
+                    <?php
+                    if(isset($_GET['page'])){
+                    ?>
+                        <h4 class="lead display-6 pb-2 border-bottom border-danger-subtle"><?= ucfirst($_GET['page'])?></h4>
+                        <?php
+                        include($_GET['page'].".php");
+                    }else{
+                    ?>
+                        <h4 class="lead display-6 pb-2 border-bottom border-danger-subtle">Dashboard</h4>
+                        <?php
+                        include("dashboard.php");
+                    }
+                    ?>
+                </div>
+            </section>
+            <!-- content end -->
         </div>
     </section>
     <!-- content end -->

@@ -52,11 +52,17 @@ if(isset($_SESSION['username'])){
                                         ?>
                                             <a href="login.php" class="w3-bar-item w3-button">Login</a>
                                         <?php
-                                        }else{
+                                        }elseif($user == "admin"){
                                         ?>
+                                            <a href="admin.php" class="w3-bar-item w3-button">Admin Panel</a>
                                             <a href="login.php" class="w3-bar-item w3-button">Change Account</a>
                                             <a href="logout.php" class="w3-bar-item w3-button">Logout</a>
+
                                         <?php
+                                        }else{
+                                            ?>
+                                            <a href="login.php" class="w3-bar-item w3-button">Change Account</a>
+                                            <a href="logout.php" class="w3-bar-item w3-button">Logout</a><?php
                                         }
                                         ?>
                                     </div>
@@ -93,7 +99,7 @@ if(isset($_SESSION['username'])){
                 ?>
                     <div class="col">
                         <div class="card h-100">
-                            <img src="img/<?= $row["gambar"]?>" class="card-img-top" alt="..." />
+                            <img src="img/<?= $row["gambar"]?>" class="card-img-top"/>
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $row["judul"]?></h5>
                                     <p class="card-text">
@@ -120,24 +126,25 @@ if(isset($_SESSION['username'])){
             <h1 class="fw-bold display-4 pb-3">Gallery</h1>
             <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
                 <?php
-                $sql = "SELECT * FROM article ORDER BY tanggal DESC";
-                $dir = "img";
-                $hasil = $conn->query($sql); 
+                //going to use db instead
+                $sql = "SELECT * from gallery ORDER BY tanggal_upload desc";
+                $dir = "gallery";
+                $result = $conn->query($sql);
 
-                while($row = $hasil->fetch_assoc()){
+                while($entry = $result->fetch_assoc()){
                 ?>
                     <!--Repeated Echo-->
                     <div class="col">
                         <div class="card h-100">
-                            <img src="img/<?= $row["gambar"]?>" class="card-img-top" alt="..." />
-                                <div class="card-body">
-                                    <img src="<?=$dir.$row['gambar']?>" alt="">
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-body-secondary">
-                                    <?= $row["tanggal"]?>
-                                    </small>
-                                </div>
+                        <img src="<?=$dir.'/'.$entry['nama']?>" class="card-img-top"/>
+                            <div class="card-body">
+                                <img src="" alt="">
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-body-secondary">
+                                    <b><?=$entry['tanggal_upload']?></b>
+                                </small>
+                            </div>
                         </div>
                     </div>
                 <?php

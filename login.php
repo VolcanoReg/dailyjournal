@@ -30,7 +30,11 @@
       $_SESSION['username'] = $row['username'];
   
       //mengalihkan ke halaman admin
-      header("location:admin.php");
+      if($_SESSION['username'] == 'admin'){
+        header("location:admin.php");
+      }else{
+        header("location:index.php");
+      }
     } else {
   	  //jika tidak ada (gagal), alihkan kembali ke halaman login
       header("location:login.php");

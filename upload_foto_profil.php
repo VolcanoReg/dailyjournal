@@ -1,5 +1,5 @@
 <?php 
-function upload_foto($File){    
+function upload_foto_profil($File){    
 	$uploadOk = 1;
 	$hasil = array();
 	$message = '';
@@ -36,7 +36,7 @@ function upload_foto($File){
 	}else{
 		//Create new filename:
         $NewName = date("YmdHis"). '.' . $FileExt;
-        $UploadDestination = "img/". $NewName; 
+        $UploadDestination = "user_photo_profile/". $NewName; 
 
 		if (move_uploaded_file($TmpLocation, $UploadDestination)) {
 			//echo "The file has been uploaded.";
