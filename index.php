@@ -23,7 +23,7 @@ if(isset($_SESSION['username'])){
 </head>
 <body>
     <!--Navigation-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <nav class="navbar navbar-expand-lg w3-orange sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="#">Me Website</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@ if(isset($_SESSION['username'])){
             </div>
     </nav>
     <!--Hero Section-->
-    <section id="hero" class="text-center p-5 text-sm-start bg-secondary">
+    <section id="hero" class="text-center p-5 text-sm-start w3-deep-purple">
         <div class="container">
             <div class="d-sm-flex flex-sm-row-reverse border-4 border-white align-items-center">
                 <img src="" alt="" class="img-fluid" width="300">
@@ -86,6 +86,47 @@ if(isset($_SESSION['username'])){
         </div>
     </section>
     <!--Article Section-->
+    <section id="jadwal" class="text-center p-5">
+        <div class="container">
+            <h1 class="fw-bold display-4 pb-3">Jadwal</h1>
+            <div class="row row-cols-1 row-cols-md-4 g-2 justify-content-center">
+                <?php
+                $jadwal = [
+                ["Senin",[["Logika Informatika","09.30-12.00 H.4.11"],["Basis Data","12.30-14.10 H.4.3"]],"red"],
+                ["Selasa",[["Sistem Informasi","09.30-12.00 H.4.2"],["Pemprograman Berbasis Web","12.30-14.10 D.2.J"],["Pendidikan Kewarganegaraan","18.30-20.10 Aula H7"]],"green"],
+                ["Rabu",[["Probabilitas dan Statistika","09.30-12.00  H.4.8"],["Rekayasa Perangkat Lunak","12.30-15.00 H.4.4"]],"blue"],
+                ["Kamis",[["Basis Data","10.20-12.00 D.3.M"],["Sistem Operasi","12.30-15.00 H.4.11"]],"yellow"],
+                ["Jum'at",[],"gray"],
+                ["Sabtu",[],"gray"]
+                ];
+                foreach ($jadwal as $hari){
+                    $nama_hari = $hari[0];
+                    $jadwalhari = $hari[1];
+                    $color = $hari[2];
+
+                    ?>
+                    <div class="col">
+                        <div class="card w3-<?=$color?>" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold"><?=$hari[0]?></h5>
+                                <p class="card-text">
+                                    <?php
+                                    foreach ($jadwalhari as $list) {
+                                        echo $list[0]."<br>";
+                                        echo $list[1]."<br>";
+                                        echo "<br>";
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                }
+                ?>
+            </div>
+        </div>
+    </section>
     <!-- article begin -->
     <section id="article" class="text-center p-5">
         <div class="container">
