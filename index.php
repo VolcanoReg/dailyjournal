@@ -41,6 +41,12 @@ if(isset($_SESSION['username'])){
                             <a class="nav-link" href="#profile">Profile</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="#article">Article</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#gallery">Gallery</a>
+                        </li>
+                        <li class="nav-item">
                             <div class="w3-container">
                                 <div class="w3-dropdown-hover">
                                     <button class="w3-button w3-black w3-round-large" type="button">
