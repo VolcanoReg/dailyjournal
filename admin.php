@@ -27,10 +27,11 @@ if (!isset($_SESSION['username'])) {
     crossorigin="anonymous"
     /> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
     <!-- nav begin -->
-    <nav class="navbar navbar-expand-sm bg-body-tertiary sticky-top bg-danger-subtle">
+    <nav class="navbar navbar-expand-sm bg-body-tertiary sticky-top w3-deep-purple">
     <div class="container">
         <a class="navbar-brand" href=".">My Daily Journal</a>
         <button
@@ -97,7 +98,7 @@ if (!isset($_SESSION['username'])) {
     </section>
     <!-- content end -->
     <!-- footer begin -->
-    <footer class="text-center p-3 bg-danger-subtle footer fixed-bottom">
+    <footer class="text-center p-3 footer fixed-bottom w3-deep-purple">
     <div>
         <a href="https://www.instagram.com/udinusofficial"
         ><i class="bi bi-instagram h2 p-2 text-dark"></i

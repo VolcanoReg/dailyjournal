@@ -1,11 +1,19 @@
 <?php
 include "koneksi.php";
 session_start();
+$usernameFoto = $conn->query("SELECT username,foto from user");
 $user = '';
+$foto = '';
 if(isset($_SESSION['username'])){
     $user = $_SESSION['username'];
+    while ($row = $usernameFoto->fetch_assoc()){
+        if($_SESSION['username'] == $row['username']){
+            $foto = $row['foto'];
+        }
+    }
 }else{
     $user = 'Guest';
+    $foto = 'default.png';
 }
 ?>
 <!DOCTYPE html>
@@ -14,7 +22,7 @@ if(isset($_SESSION['username'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Latihan Bootstrap</title>
+    <title>Daily Journal Website</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -74,6 +82,9 @@ if(isset($_SESSION['username'])){
                                     </div>
                                 </div>
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <img src="<?='user_photo_profile/'.$foto?>" style="max-width: 40px;" class="img-thumbnail" alt="Thumbnail user">
                         </li>
                     </ul>
                 </div>
